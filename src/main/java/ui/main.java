@@ -132,6 +132,13 @@ public class main extends javax.swing.JFrame {
         int screenWidth = getWidth();
         int screenHeight = getHeight();
         Desktop.setSize(screenWidth, screenHeight);
+        JInternalFrame[] vectorVentanas = Desktop.getAllFrames();
+        for(JInternalFrame ventana : vectorVentanas){
+            Point loc = ventana.getLocation();
+            if(loc.x >= screenWidth || loc.y >= screenHeight){
+                ventana.setLocation(0,0);
+            }
+        }
     }//GEN-LAST:event_formComponentResized
 
     /**

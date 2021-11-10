@@ -22,7 +22,6 @@ public class ImagePanel extends JPanel {
     private Image copyImg;
     private Mat image;
     private Mat imageUmbra;
-    private Mat imageUmbraPrev;
     
     boolean imageSet = false;
     
@@ -42,11 +41,6 @@ public class ImagePanel extends JPanel {
         Imgcodecs.imwrite(img.getAbsolutePath(), imageUmbra);
     }
     
-    public void undo(){
-        imageUmbra = imageUmbraPrev;
-        this.update(this.getGraphics());
-    }
-    
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -59,7 +53,6 @@ public class ImagePanel extends JPanel {
     }
     
     public void Umbrar(Integer umbral){
-        imageUmbraPrev = imageUmbra;
         imageUmbra = umbralizar(image, umbral);
         this.update(this.getGraphics());
     }
