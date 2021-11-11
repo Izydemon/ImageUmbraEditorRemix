@@ -143,7 +143,16 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_closeAllWindowActionPerformed
 
     private void helpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "En el menú Archivo dispondrá de 2 opciones: Abrir Archivo y Salir.\n"
+                + "Abrir Archivo permite abrir una imagen en una ventana dentro de la aplicación.\n"
+                + "Salir, cerrará la aplicación.\n\n"
+                + "En el menú Edición dispondrá de la opción de Cerrar Ventanas\n"
+                + "Al igual que cuando se intenta abrir una segunda imagen, se cerrarán todas la ventanas abiertas\n\n"
+                + "Dentro de cada ventana se dispone de 2 submenús, Archivo y Edición\n"
+                + "Archivo permite Guardar la imagen en su equipo y Cerrar cerrará la ventana seleccionada\n"
+                + "Edición permite modificar la imagen mediante el proceso de umbralizado\n"
+                + "creando una nueva ventana con el resultado obtenido\n\n"
+                + "Desarrollado por: Noah Hernández Morales e Isidro Bermúdez Fernández", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_helpMenuActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized

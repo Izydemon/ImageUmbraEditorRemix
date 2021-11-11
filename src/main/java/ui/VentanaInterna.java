@@ -8,6 +8,8 @@ package ui;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.opencv.core.Mat;
 
@@ -16,6 +18,7 @@ import org.opencv.core.Mat;
  * @author izyde
  */
 public class VentanaInterna extends javax.swing.JInternalFrame {
+    JFileChooser fc = new JFileChooser();
     
     /**
      * Creates new form VentanaInterna
@@ -125,7 +128,11 @@ public class VentanaInterna extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveImageActionPerformed
-        // TODO add your handling code here:
+        int res = fc.showSaveDialog(null);
+        if(res == JFileChooser.APPROVE_OPTION){
+            File fichero = fc.getSelectedFile();
+            imagePanel.SaveImage(fichero);
+        }
     }//GEN-LAST:event_saveImageActionPerformed
 
     private void closeWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeWindowActionPerformed
@@ -154,7 +161,7 @@ public class VentanaInterna extends javax.swing.JInternalFrame {
                 VentanaInterna ventana = new VentanaInterna();
                 ventana.setTitle(imagePanel.GetName() + "-" + um);
                 this.getDesktopPane().add(ventana);
-                ventana.setLocation(new Point(30,20));
+                ventana.setLocation(new Point(60,60));
                 ventana.getImagePanel().SetMat(img);
                 ventana.setVisible(true);
             }
