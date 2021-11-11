@@ -190,6 +190,13 @@ public class main extends javax.swing.JFrame {
                     ventana.getImagePanel().AddImage(fichero);
                     ventana.setVisible(true);
                 }
+            } else{
+                File fichero = fc.getSelectedFile();
+                VentanaInterna ventana = new VentanaInterna();
+                Desktop.add(ventana);
+                ventana.setLocation(new Point(30,20));
+                ventana.getImagePanel().AddImage(fichero);
+                ventana.setVisible(true);
             }
         }
     }//GEN-LAST:event_openFileActionPerformed
