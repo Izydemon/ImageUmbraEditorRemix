@@ -64,6 +64,10 @@ public class VentanaInterna extends javax.swing.JInternalFrame {
         this.setClosable(true);
         this.setResizable(true);
     }
+    
+    public ImagePanel getImagePanel(){
+        return imagePanel;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

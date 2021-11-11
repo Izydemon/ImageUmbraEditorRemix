@@ -7,7 +7,11 @@ package ui;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -15,6 +19,10 @@ import javax.swing.JInternalFrame;
  */
 public class main extends javax.swing.JFrame {
 
+    JFileChooser fc = new JFileChooser();
+    
+    FileNameExtensionFilter filter = null;
+    
     /**
      * Creates new form main
      */
@@ -34,16 +42,23 @@ public class main extends javax.swing.JFrame {
         Desktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        openFile = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         openNewWindow = new javax.swing.JMenuItem();
         closeAllWindow = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -59,6 +74,23 @@ public class main extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Archivo");
+
+        openFile.setText("Abrir archivo");
+        openFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openFileActionPerformed(evt);
+            }
+        });
+        jMenu1.add(openFile);
+
+        exit.setText("Salir");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(exit);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edición");
@@ -141,6 +173,43 @@ public class main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formComponentResized
 
+    private void openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileActionPerformed
+        filter = new FileNameExtensionFilter("Imágenes", "png", "jpg", "jpge");
+        fc.addChoosableFileFilter(filter);
+        
+        int res = fc.showOpenDialog(null);
+        if(res == JFileChooser.APPROVE_OPTION){
+            if(Desktop.getAllFrames().length != 0){
+                int resInt = JOptionPane.showConfirmDialog(rootPane, "Continuar eliminará cualquier cambio no guardado. ¿Seguro que quieres continuar?", "Abrir", JOptionPane.YES_NO_OPTION);
+                if(resInt == JOptionPane.YES_OPTION){
+                    closeAllWindowActionPerformed(evt);
+                    File fichero = fc.getSelectedFile();
+                    VentanaInterna ventana = new VentanaInterna();
+                    Desktop.add(ventana);
+                    ventana.setLocation(new Point(30,20));
+                    ventana.getImagePanel().AddImage(fichero);
+                    ventana.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_openFileActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        int res = JOptionPane.showConfirmDialog(rootPane, "¿Seguro que quieres salir?", "Salir", JOptionPane.YES_NO_OPTION);
+        
+        if(res == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int res = JOptionPane.showConfirmDialog(rootPane, "¿Seguro que quieres salir?", "Salir", JOptionPane.YES_NO_OPTION);
+        
+        if(res == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -179,11 +248,13 @@ public class main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuItem closeAllWindow;
+    private javax.swing.JMenuItem exit;
     private javax.swing.JMenuItem helpMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem openFile;
     private javax.swing.JMenuItem openNewWindow;
     // End of variables declaration//GEN-END:variables
 }
