@@ -152,7 +152,7 @@ public class VentanaInterna extends javax.swing.JInternalFrame {
                 int um = Integer.parseInt(res);
                 Mat img = imagePanel.Umbrar(um);
                 VentanaInterna ventana = new VentanaInterna();
-                ventana.setTitle(imagePanel.getName() + "-" + um);
+                ventana.setTitle(imagePanel.GetName() + "-" + um);
                 this.getDesktopPane().add(ventana);
                 ventana.setLocation(new Point(30,20));
                 ventana.getImagePanel().SetMat(img);

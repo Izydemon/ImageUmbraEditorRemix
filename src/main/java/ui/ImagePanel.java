@@ -64,8 +64,7 @@ public class ImagePanel extends JPanel {
     }
     
     public Mat Umbrar(Integer umbral){
-        imageUmbra = umbralizar(image, umbral);
-        return imageUmbra;
+        return umbralizar(image, umbral);
     }
     
     private Mat umbralizar(Mat imagen_original, Integer umbral) {
