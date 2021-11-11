@@ -23,6 +23,8 @@ public class ImagePanel extends JPanel {
     private Mat image;
     private Mat imageUmbra;
     
+    private File file;
+    
     boolean imageSet = false;
     
     public ImagePanel(){
@@ -30,7 +32,16 @@ public class ImagePanel extends JPanel {
     }
     
     public void AddImage(File img){
+        file = img;
         image = Imgcodecs.imread(img.getAbsolutePath());
+        imageUmbra = image;
+        this.setOpaque(true);
+        imageSet = true;
+        this.update(this.getGraphics());
+    }
+    
+    public void SetMat(Mat mat){
+        image = mat;
         imageUmbra = image;
         this.setOpaque(true);
         imageSet = true;
@@ -52,9 +63,9 @@ public class ImagePanel extends JPanel {
         }
     }
     
-    public void Umbrar(Integer umbral){
+    public Mat Umbrar(Integer umbral){
         imageUmbra = umbralizar(image, umbral);
-        this.update(this.getGraphics());
+        return imageUmbra;
     }
     
     private Mat umbralizar(Mat imagen_original, Integer umbral) {
@@ -70,5 +81,9 @@ public class ImagePanel extends JPanel {
         Imgproc.threshold(imagenGris, imagenUmbralizada, umbral, 255, Imgproc.THRESH_BINARY);
         // se devuelve la imagen umbralizada
         return imagenUmbralizada;
+    }
+    
+    public String GetName(){
+        return file.getName();
     }
 }

@@ -5,15 +5,18 @@
  */
 package ui;
 
+import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Point;
 import javax.swing.JOptionPane;
+import org.opencv.core.Mat;
 
 /**
  *
  * @author izyde
  */
 public class VentanaInterna extends javax.swing.JInternalFrame {
-
+    
     /**
      * Creates new form VentanaInterna
      */
@@ -96,6 +99,11 @@ public class VentanaInterna extends javax.swing.JInternalFrame {
 
         umbraOption.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         umbraOption.setText("Umbrar");
+        umbraOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                umbraOptionActionPerformed(evt);
+            }
+        });
         jMenu2.add(umbraOption);
 
         jMenuBar1.add(jMenu2);
@@ -135,6 +143,26 @@ public class VentanaInterna extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formInternalFrameClosing
+
+    private void umbraOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_umbraOptionActionPerformed
+         String res = JOptionPane.showInputDialog(rootPane, "Introduzca un valor de umbralizado", "Umbralizado", JOptionPane.QUESTION_MESSAGE);
+        
+        if(res != null){
+            try {
+                int um = Integer.parseInt(res);
+                Mat img = imagePanel.Umbrar(um);
+                VentanaInterna ventana = new VentanaInterna();
+                ventana.setTitle(imagePanel.getName() + "-" + um);
+                this.getDesktopPane().add(ventana);
+                ventana.setLocation(new Point(30,20));
+                ventana.getImagePanel().SetMat(img);
+                ventana.setVisible(true);
+            }
+            catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(rootPane, "Introduzca un valor entero", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_umbraOptionActionPerformed
 
     private void Base() {
         this.setPreferredSize(new Dimension(100,80));

@@ -171,6 +171,7 @@ public class main extends javax.swing.JFrame {
                     closeAllWindowActionPerformed(evt);
                     File fichero = fc.getSelectedFile();
                     VentanaInterna ventana = new VentanaInterna();
+                    ventana.setTitle(fichero.getName());
                     Desktop.add(ventana);
                     ventana.setLocation(new Point(30,20));
                     ventana.getImagePanel().AddImage(fichero);
@@ -179,6 +180,7 @@ public class main extends javax.swing.JFrame {
             } else{
                 File fichero = fc.getSelectedFile();
                 VentanaInterna ventana = new VentanaInterna();
+                ventana.setTitle(fichero.getName());
                 Desktop.add(ventana);
                 ventana.setLocation(new Point(30,20));
                 ventana.getImagePanel().AddImage(fichero);
