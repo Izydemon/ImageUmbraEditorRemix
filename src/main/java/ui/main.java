@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.opencv.core.Core;
 
 /**
  *
@@ -28,6 +29,8 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        nu.pattern.OpenCV.loadShared();
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
     /**
@@ -45,7 +48,6 @@ public class main extends javax.swing.JFrame {
         openFile = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        openNewWindow = new javax.swing.JMenuItem();
         closeAllWindow = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenuItem();
@@ -95,14 +97,6 @@ public class main extends javax.swing.JFrame {
 
         jMenu2.setText("Edición");
 
-        openNewWindow.setText("Abrir ventana interna");
-        openNewWindow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openNewWindowActionPerformed(evt);
-            }
-        });
-        jMenu2.add(openNewWindow);
-
         closeAllWindow.setText("Cerrar ventanas");
         closeAllWindow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,14 +134,6 @@ public class main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void openNewWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openNewWindowActionPerformed
-        VentanaInterna ventana = new VentanaInterna();
-        Desktop.add(ventana);
-        ventana.setLocation(new Point(30,20));
-        ventana.setVisible(true);
-        
-    }//GEN-LAST:event_openNewWindowActionPerformed
 
     private void closeAllWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeAllWindowActionPerformed
         JInternalFrame[] vectorVentanas = Desktop.getAllFrames();
@@ -262,6 +248,5 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem openFile;
-    private javax.swing.JMenuItem openNewWindow;
     // End of variables declaration//GEN-END:variables
 }

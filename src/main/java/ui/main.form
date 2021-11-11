@@ -32,14 +32,6 @@
             <Property name="text" type="java.lang.String" value="Edici&#xf3;n"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="openNewWindow">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Abrir ventana interna"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openNewWindowActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="closeAllWindow">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cerrar ventanas"/>
